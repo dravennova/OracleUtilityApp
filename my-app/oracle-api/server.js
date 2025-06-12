@@ -4,8 +4,7 @@ const oracledb = require('oracledb');
 const cors = require('cors'); //required libraries
 
 const app = express();
-const PORT = process.env.PORT || 3000;
- //port we listen to
+const PORT = process.env.PORT || 3001;
 
 app.use(cors()); //allows cors to accept requests from different origins
 
@@ -44,7 +43,7 @@ app.get('/customers', async (req, res) => { //in this page, show information
 });
 
 app.listen(PORT, () => {
-  console.log(`Oracle API running on http://localhost:${PORT}`); //listen at this port
+  console.log(`Server listening on port ${PORT}`);
 });
 
 
