@@ -4,7 +4,8 @@ const oracledb = require('oracledb');
 const cors = require('cors'); //required libraries
 
 const app = express();
-const PORT = 3001; //port we listen to
+const PORT = process.env.PORT || 3000;
+ //port we listen to
 
 app.use(cors()); //allows cors to accept requests from different origins
 

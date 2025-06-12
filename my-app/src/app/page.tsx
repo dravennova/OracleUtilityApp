@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await fetch('http://localhost:3001/customers');
+        const res = await fetch('${process.env.NEXT_PUBLIC_API_BASE}/customers');
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
         setCustomers(data);
