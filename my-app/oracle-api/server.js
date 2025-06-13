@@ -6,7 +6,19 @@ const cors = require('cors'); //required libraries
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors()); //allows cors to accept requests from different origins
+app.use((req, res, next) => {
+  const key = req.headers['x-api-key'];
+  if (key !== process.env.API_KEY) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  next();
+});
+
+const corsOptions = {
+  origin: 'https://oracle-utility-app.vercel.app/',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions)); //allows cors to accept requests from different origins
 
 app.get('/customers', async (req, res) => { //in this page, show information
   let connection;

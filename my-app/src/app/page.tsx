@@ -18,7 +18,11 @@ export default function Home() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/customers`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/customers`, {
+          headers: {
+            'x-api-key': process.env.NEXT_PUBLIC_API_KEY || ''
+          }
+        });
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
         setCustomers(data);
