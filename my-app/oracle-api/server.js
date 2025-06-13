@@ -7,14 +7,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-  origin: 'https://oracle-utility-app.vercel.app/',
+  origin: 'https://oracle-utility-app.vercel.app',
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions)); //allows cors to accept requests from different origins
 
 app.use((req, res, next) => {
+  console.log('Received request with x-api-key:', req.headers['x-api-key']); 
   const key = req.headers['x-api-key'];
   if (key !== process.env.API_KEY) {
+    console.log('Invalid or missing API key');
     return res.status(403).json({ error: 'Forbidden' });
   }
   next();
