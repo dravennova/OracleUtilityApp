@@ -6,6 +6,12 @@ const cors = require('cors'); //required libraries
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const corsOptions = {
+  origin: 'https://oracle-utility-app.vercel.app/',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions)); //allows cors to accept requests from different origins
+
 app.use((req, res, next) => {
   const key = req.headers['x-api-key'];
   if (key !== process.env.API_KEY) {
@@ -13,12 +19,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-const corsOptions = {
-  origin: 'https://oracle-utility-app.vercel.app/',
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions)); //allows cors to accept requests from different origins
 
 app.get('/customers', async (req, res) => { //in this page, show information
   let connection;
