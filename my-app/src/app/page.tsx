@@ -43,7 +43,8 @@ export default function Home() {
 
   return (
     <div className="p-6 min-h-screen max-w-full overflow-x-hidden">
-      <h1 className="text-2xl font-bold mb-4">Oracle Utility App</h1> <ModeToggle />
+      <h1 className="text-2xl font-bold mb-4">Oracle Utility App</h1>
+      <ModeToggle />
       <hr className='h-2 bg-black dark:bg-white mb-5 border-none' />
 
       <div className="p-6 min-h-screen w-full bg-zinc-900 text-white">
