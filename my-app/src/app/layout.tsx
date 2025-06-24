@@ -31,12 +31,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          {children}
+          <SidebarProvider>
+            <div className="flex min-h-screen w-full">
+              <AppSidebar />
+              <SidebarTrigger/>
+              <main className="flex-1 p-4 overflow-x-hidden">{children}</main>
+            </div>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
