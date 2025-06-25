@@ -1,4 +1,4 @@
-import { Calendar, ChevronUp, Home, Inbox, Search, Settings, User2 } from "lucide-react"
+import {ChevronUp, User2, Home, BadgeDollarSign, CircleGauge, Clipboard } from "lucide-react"
 
 import {
   Sidebar,
@@ -21,6 +21,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { ModeToggle } from "./mode-toggle"
 
 const items = [
   {
@@ -31,18 +32,18 @@ const items = [
   {
     title: "Meters",
     url: "/meters",
-    icon: Home
+    icon: CircleGauge
   },
   {
     title: "Billing",
     url: "/billing",
-    icon: Home 
+    icon: BadgeDollarSign 
   },
 
   {
     title: "Reports",
     url: "/report",
-    icon: Home
+    icon: Clipboard
   }
 ]
  
@@ -57,10 +58,10 @@ export function AppSidebar() {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <a href={item.url} className="flex items-center gap-2">
-                    {item.icon && <item.icon className="h-5 w-5" />}
-                    <span>{item.title}</span>
+                <SidebarMenuButton asChild className="text-lg px-8 py-6">
+                  <a href={item.url} className="flex items-center gap-5 ">
+                    {item.icon && <item.icon className="h-8 w-8 text-primary" />}
+                    <span className="font-medium">{item.title}</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -74,6 +75,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
+              <ModeToggle/>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
                   <User2 /> Username

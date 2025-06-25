@@ -40,7 +40,9 @@ export default function RootLayout({
             <div className="flex min-h-screen w-full">
               <AppSidebar />
               <SidebarTrigger/>
-              <main className="flex-1 p-4 overflow-x-hidden">{children}</main>
+              <main className="flex-1 p-4 overflow-x-hidden">
+                {children}
+              </main>
             </div>
           </SidebarProvider>
         </ThemeProvider>
