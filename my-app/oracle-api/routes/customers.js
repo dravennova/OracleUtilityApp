@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const getConnection = require('../utils/db');
+const { getConnection } = require('../utils/db');
+const oracledb = require('oracledb');
 
-route.get('/customers', async (req, res) => {
+route.get('/', async (req, res) => {
     let connection;
     try {
         connection = await getConnection();
