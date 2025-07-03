@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     try {
         connection = await getConnection();
         const result = await connection.execute(
-            'SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, FROM CUSTOMERS',
+            'SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL FROM CUSTOMERS',
             [],
             { outFormat: oracledb.OUT_FORMAT_OBJECT }
         );
