@@ -3,7 +3,7 @@ const router = express.Router();
 const { getConnection } = require('../utils/db');
 const oracledb = require('oracledb');
 
-route.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     let connection;
     try {
         connection = await getConnection();
