@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 
 const customerRoute = require('./routes/customers');
-const authRoute = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,7 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/customers', customerRoute);
-app.use('/auth', authRoute);
 
 app.listen (PORT, () => {
   console.log(`Server Running on port ${PORT}`);
