@@ -1,100 +1,64 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import {Card, CardContent, CardHeader, CardTitle} from "../components/ui/card";
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-
-type Customer = {
-  CUSTOMER_ID: number;
-  FIRST_NAME: string;
-  LAST_NAME: string;
-  PHONE: string;
-  EMAIL: string;
-};
-
-export default function Home() {
-  const [customers, setCustomers] = useState<Customer[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/customers`, {
-          headers: {
-            'x-api-key': process.env.NEXT_PUBLIC_API_KEY || ''
-          }
-        });
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        const data = await res.json();
-        setCustomers(data);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    //fetchCustomers();
-  }, []);
-
-  //if (loading) return <p>Loading customers...</p>;
-  //if (error) return <p>Error: {error}</p>;
-
+export default function LandingPage() {
   return (
-    <div className="p-6 min-h-screen max-w-full overflow-x-hidden flex flex-col">
-  <h1 className="text-2xl font-bold mb-4">Oracle Utility App</h1>
-  <hr className='h-2 bg-black dark:bg-white mb-5 border-none' />
-  <div className="p-6 bg-zinc-900 text-white flex-1 flex flex-col min-h-0 overflow-hidden rounded-lg">
-    <div className="flex flex-col lg:flex-row gap-6 mt-6 flex-1 min-h-0">
-      <div className="flex flex-col gap-6 lg:flex-[2] min-h-0">
-        <Card className="flex-shrink-0">
+    <main className="flex flex-col items-center justify-center min-h-screen px-4 py-10 bg-background text-foreground">
+      <section className="max-w-4xl text-center space-y-6">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Oracle Utility App
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          Manage your utility meters, billing, and account settings — all in one place.
+        </p>
+        <div className="flex justify-center gap-4">
+          <Link href="/login">
+            <Button>Login</Button>
+          </Link>
+          <Link href="/register">
+            <Button variant="outline">Get Started</Button>
+          </Link>
+        </div>
+      </section>
+
+      <section className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl">
+        <Card>
           <CardHeader>
-            <CardTitle>Data Section</CardTitle>
+            <CardTitle>Meter Management</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Some data goes here</p>
+            <p className="text-sm text-muted-foreground">
+              Add, edit, and monitor utility meters seamlessly.
+            </p>
           </CardContent>
         </Card>
-        <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-          <Card className="flex-1 min-w-0">
-            <CardHeader>
-              <CardTitle className="text-sm sm:text-base">Manage Meters</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">Control meter settings</p>
-            </CardContent>
-          </Card>
-          <Card className="flex-1 min-w-0">
-            <CardHeader>
-              <CardTitle className="text-sm sm:text-base">Billing / Payments</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">View and manage billing</p>
-            </CardContent>
-          </Card>
-          <Card className="flex-1 min-w-0">
-            <CardHeader>
-              <CardTitle className="text-sm sm:text-base">Account Settings</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">Profile and preferences</p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-      <div className="lg:flex-[1] min-h-0">
-        <Card className="h-full">
+        <Card>
           <CardHeader>
-            <CardTitle>Payment Section</CardTitle>
+            <CardTitle>Billing & Payments</CardTitle>
           </CardHeader>
-          <CardContent className="overflow-y-auto">
-            <p>Payment info goes here</p>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Track usage and view your payment history.
+            </p>
           </CardContent>
         </Card>
-      </div>
-    </div>
-  </div>
-</div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Secure Account</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Update personal information and secure your data.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+      <footer className="mt-16 text-xs text-muted-foreground">
+        &copy; {new Date().getFullYear()} Oracle Utility App. All rights reserved. Demo Application Only
+      </footer>
+    </main>
   );
 }
