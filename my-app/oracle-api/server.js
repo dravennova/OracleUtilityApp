@@ -8,7 +8,7 @@ const customerRoute = require('./routes/customers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({origin: 'https://oracle-utility-app.vercel.app/'}));
+app.use(cors({origin: 'https://oracle-utility-app.vercel.app'}));
 app.use(express.json());
 
 app.use((req, res, next) => {
