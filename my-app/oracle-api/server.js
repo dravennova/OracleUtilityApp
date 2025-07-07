@@ -8,10 +8,24 @@ const customerRoute = require('./routes/customers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({origin: 'https://oracle-utility-app.vercel.app'}));
+const corsOptions = {
+  origin: 'https://oracle-utility-app.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'x-api-key'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
+app.options('*', cors(corsOptions));
+
 app.use((req, res, next) => {
+
+  if (req.method === 'OPTIONS')
+  {
+    return next();
+  }
+  
   const key = req.headers['x-api-key'];
   if(key !== process.env.API_KEY)
   {
