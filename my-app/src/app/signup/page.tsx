@@ -24,7 +24,7 @@ export default function SignupForm() {
   e.preventDefault();
 
   try {
-    const response = await fetch('https://oracleutilityapp.onrender.com/auth', {
+    const response = await fetch('https://oracleutilityapp.onrender.com/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
