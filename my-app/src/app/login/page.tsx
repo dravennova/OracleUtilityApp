@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 
+
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">

@@ -14,15 +14,45 @@ export default function SignupForm() {
     password: '',
   });
 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Signup Data:', formData);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:3001/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || 'Signup failed');
+      return;
+    }
+
+    alert('Signup successful!');
+    setFormData({
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      password: '',
+    });
+  } catch (error) {
+    console.error('Signup error:', error);
+    alert('An error occurred. Please try again.');
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
